@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:padding="2dp">
+
+        <ImageView
+                android:id="@+id/imageView_avatar"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@mipmap/ic_launcher"/>
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:padding="2dp">
+
+            <TextView
+                    android:id="@+id/textView_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginStart="10dp"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textAppearance="@style/ListItemTextStyle"
+                    tools:text="Myrick Chow"/>
+
+            <TextView
+                    android:id="@+id/textView_position"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginStart="10dp"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textAppearance="@style/ListItemTextStyle"
+                    tools:text="Software Engineer"/>
+
+            <TextView
+                    android:id="@+id/textView_expertise"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:textAppearance="@style/ListItemTextStyle"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    tools:text="Vue,React,Google App Engine,Python,CSS,CSS,CSS,CSSCSSCSSCSSCSSCSSCSS"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

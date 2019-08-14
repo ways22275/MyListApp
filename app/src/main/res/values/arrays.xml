@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="fragment_titles">
+        <item>@string/frag_title_first</item>
+        <item>@string/frag_title_second</item>
+        <item>@string/frag_title_third</item>
+    </string-array>
+</resources>
