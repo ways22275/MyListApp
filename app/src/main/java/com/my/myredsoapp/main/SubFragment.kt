@@ -96,12 +96,21 @@ class SubFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         mRecyclerView.layoutManager = layoutManager
 
         mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            var mShouldReload = false
+
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                val itemPosition = layoutManager.findLastCompletelyVisibleItemPosition()
-                if(itemPosition == layoutManager.itemCount - 1){
+                val lm = recyclerView.layoutManager as LinearLayoutManager
+                val firstVisibleItem = lm.findFirstVisibleItemPosition()
+                val visibleItemCount = lm.childCount
+                val totalItemCount: Int = lm.itemCount
+                mShouldReload = firstVisibleItem + visibleItemCount == totalItemCount && dy > 0
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && mShouldReload)
                     fetchList()
-                }
             }
         })
 
