@@ -1,4 +1,4 @@
-package com.my.myredsoapp.main
+package com.my.myredsoapp.listRedSo
 
 import android.content.Context
 import androidx.lifecycle.LifecycleOwner
@@ -14,7 +14,7 @@ import com.my.myredsoapp.network.NetworkScheduler
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-class MainViewModel : ViewModel() {
+class RedSoViewModel : ViewModel() {
 
     var mRedSoList: MutableLiveData<List<RedSoEntity>> = MutableLiveData()
         private set

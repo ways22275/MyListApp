@@ -1,4 +1,4 @@
-package com.my.myredsoapp.main
+package com.my.myredsoapp.listRedSo
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +11,7 @@ import butterknife.ButterKnife
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.my.myredsoapp.R
+import com.my.myredsoapp.base.BaseViewHolder
 import com.my.myredsoapp.data.entity.RedSoEntity
 import com.my.myredsoapp.util.GlideApp
 
@@ -26,7 +27,7 @@ class RedSoListAdapter : RecyclerView.Adapter<BaseViewHolder<*>>() {
     private var mList : MutableList<RedSoEntity> = mutableListOf()
 
     override fun getItemViewType(position: Int): Int {
-        return if (mList[position].type == TYPE_EMPLOYEE) VIEW_TYPE_EMPLOYEE  else VIEW_TYPE_BANNER
+        return if (mList[position].type == TYPE_EMPLOYEE) VIEW_TYPE_EMPLOYEE else VIEW_TYPE_BANNER
     }
 
     override fun getItemCount(): Int {

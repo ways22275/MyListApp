@@ -1,4 +1,4 @@
-package com.my.myredsoapp.main
+package com.my.myredsoapp.listRedSo
 
 import android.os.Bundle
 import android.util.Log
@@ -22,7 +22,7 @@ class SubFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     companion object {
         private const val ARG_TITLE = "subFragment_title"
 
-        fun newInstance(title: String) : SubFragment{
+        fun newInstance(title: String) : SubFragment {
             val args = Bundle()
             args.putSerializable(ARG_TITLE, title)
             val fragment = SubFragment()
@@ -40,7 +40,7 @@ class SubFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private val TAG = javaClass.simpleName
     private lateinit var mUnBinder : Unbinder
-    private lateinit var mViewModel : MainViewModel
+    private lateinit var mViewModel : RedSoViewModel
     private lateinit var mAdapter: RedSoListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -114,7 +114,7 @@ class SubFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
             }
         })
 
-        mViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        mViewModel = ViewModelProviders.of(this).get(RedSoViewModel::class.java)
         mViewModel.mRedSoList.observe(this, Observer<List<RedSoEntity>> {
                 dataList ->
                     mSwipeRefreshLayout.isRefreshing = false

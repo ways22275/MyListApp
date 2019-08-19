@@ -1,4 +1,4 @@
-package com.my.myredsoapp.main
+package com.my.myredsoapp.listRedSo
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

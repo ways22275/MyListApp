@@ -1,29 +1,27 @@
-package com.my.myredsoapp.main
+package com.my.myredsoapp.listRedSo
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
+import androidx.viewpager.widget.ViewPager
 import butterknife.BindView
-import butterknife.OnClick
+import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.my.myredsoapp.R
-import com.my.myredsoapp.listRedSo.RedSoActivity
 
-class MainActivity : AppCompatActivity() {
+class RedSoActivity : AppCompatActivity() {
     private val TAG = javaClass.simpleName
 
     // region BindViews
-    lateinit var mButtonTest : AppCompatButton
+    @BindView(R.id.viewPager)
+    lateinit var mViewPager: ViewPager
     // endregion
 
     private lateinit var mUnBinder : Unbinder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_redso)
         log("onCreate")
         init()
     }
@@ -44,22 +42,13 @@ class MainActivity : AppCompatActivity() {
         mUnBinder.unbind()
     }
 
-    @OnClick(R.id.button_test)
-    fun onButtonTestClicked(view : View) {
-
-    }
-
     private fun init() {
-        mButtonTest = findViewById(R.id.button_test)
-        mButtonTest.setOnClickListener{
-            goToRedSoList()
-        }
-    }
-
-    private fun goToRedSoList() {
-        val intent = Intent()
-        intent.setClass(this, RedSoActivity::class.java)
-        startActivity(intent)
+        mUnBinder = ButterKnife.bind(this)
+        val mPagerAdapter = ViewPagerAdapter(
+            supportFragmentManager, resources.getStringArray(R.array.fragment_titles).asList()
+        )
+        mViewPager.adapter = mPagerAdapter
+        mViewPager.currentItem = 0
     }
 
     private fun log(msg : String) {
