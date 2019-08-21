@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyRedSoApp</string>
+    <string name="app_name">MyListApp</string>
 
     <string name="toolbar_main_title">
         <font color="#FFFFFF">Red</font>

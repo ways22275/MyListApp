@@ -8,16 +8,14 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.my.myredsoapp.R
+import com.my.myredsoapp.base.BaseActivity
 
-class RedSoActivity : AppCompatActivity() {
+class RedSoActivity : BaseActivity() {
     private val TAG = javaClass.simpleName
 
     // region BindViews
-    @BindView(R.id.viewPager)
-    lateinit var mViewPager: ViewPager
+    private lateinit var mViewPager: ViewPager
     // endregion
-
-    private lateinit var mUnBinder : Unbinder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +37,18 @@ class RedSoActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         log("onDestroy")
-        mUnBinder.unbind()
+    }
+
+    override fun getEnterTransAnimType(): Int {
+        return TRANSITION_ANIM_SLIDE_FROM_RIGHT
+    }
+
+    override fun getLeaveTransAnimType(): Int {
+        return TRANSITION_ANIM_SLIDE_FROM_RIGHT
     }
 
     private fun init() {
-        mUnBinder = ButterKnife.bind(this)
+        mViewPager = findViewById(R.id.viewPager)
         val mPagerAdapter = ViewPagerAdapter(
             supportFragmentManager, resources.getStringArray(R.array.fragment_titles).asList()
         )

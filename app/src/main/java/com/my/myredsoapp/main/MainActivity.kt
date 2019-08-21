@@ -4,22 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import butterknife.BindView
 import butterknife.OnClick
-import butterknife.Unbinder
 import com.my.myredsoapp.R
+import com.my.myredsoapp.base.BaseActivity
 import com.my.myredsoapp.listRedSo.RedSoActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     private val TAG = javaClass.simpleName
 
     // region BindViews
-    lateinit var mButtonTest : AppCompatButton
+    private lateinit var mButtonTest : AppCompatButton
     // endregion
-
-    private lateinit var mUnBinder : Unbinder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +37,14 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         log("onDestroy")
-        mUnBinder.unbind()
+    }
+
+    override fun getEnterTransAnimType() : Int {
+        return TRANSITION_ANIM_SLIDE_FROM_BOTTOM
+    }
+
+    override fun getLeaveTransAnimType(): Int {
+        return TRANSITION_ANIM_SLIDE_FROM_BOTTOM
     }
 
     @OnClick(R.id.button_test)
