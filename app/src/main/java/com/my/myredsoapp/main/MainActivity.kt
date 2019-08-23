@@ -9,6 +9,7 @@ import butterknife.OnClick
 import com.my.myredsoapp.R
 import com.my.myredsoapp.base.BaseActivity
 import com.my.myredsoapp.listRedSo.RedSoActivity
+import com.my.myredsoapp.util.Constant
 
 class MainActivity : BaseActivity() {
     private val TAG = javaClass.simpleName

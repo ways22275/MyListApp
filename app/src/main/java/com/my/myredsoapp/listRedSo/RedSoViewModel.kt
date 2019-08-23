@@ -5,8 +5,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.my.myredsoapp.data.entity.RedSoEntity
-import com.my.myredsoapp.data.gson.ApiList
-import com.my.myredsoapp.data.gson.RedSoGSon
+import com.my.myredsoapp.data.gson.ReSoList
+import com.my.myredsoapp.data.gson.RedSoItem
 import com.my.myredsoapp.network.ApiBaseResponse
 import com.my.myredsoapp.network.ApiClient
 import com.my.myredsoapp.network.ApiErrorModel
@@ -29,16 +29,16 @@ class RedSoViewModel : ViewModel() {
         params["team"] = team.toLowerCase()
         params["page"] = page.toString()
 
-        ApiClient.instance.mService
+        ApiClient.instance.getRedSoService()
             .getRedSoList(params)
             .compose(NetworkScheduler.compose())
-            .subscribe(object : ApiBaseResponse<ApiList<RedSoGSon>>(context){
+            .subscribe(object : ApiBaseResponse<ReSoList<RedSoItem>>(context){
                 override fun onSubscribe(d: Disposable) {
                     super.onSubscribe(d)
                     mCompositeDisposable.add(d)
                 }
 
-                override fun onSuccess(dataList: ApiList<RedSoGSon>) {
+                override fun onSuccess(dataList: ReSoList<RedSoItem>) {
                     val entityList = arrayListOf<RedSoEntity>()
                     for (data in dataList.results!!) {
                         entityList.add(data.toEntity())
