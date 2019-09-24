@@ -14,7 +14,7 @@ class MainActivity : BaseActivity() {
     private val TAG = javaClass.simpleName
 
     // region BindViews
-    @BindView(R.id.button_test)
+    @BindView(R.id.button_to_red_so)
     lateinit var mButtonTest : AppCompatButton
     // endregion
 
@@ -56,7 +56,7 @@ class MainActivity : BaseActivity() {
         return TRANSITION_ANIM_SLIDE_FROM_BOTTOM
     }
 
-    @OnClick(R.id.button_test)
+    @OnClick(R.id.button_to_red_so)
     fun onButtonTestClicked(view : View) {
 
     }

@@ -6,6 +6,12 @@
         <font color="#FF0000">So</font>
     </string>
 
+    <!--Bottom Navigation Menu Titles -->
+    <string name ="bottom_navigation_title_red_so">RedSo</string>
+    <string name ="bottom_navigation_title_github_search">Github</string>
+    <string name ="bottom_navigation_title_line_tv">LineTV</string>
+
+    <!--RedSo Frags-->
     <string name="frag_title_first">Rangers</string>
     <string name="frag_title_second">Elastic</string>
     <string name="frag_title_third">Dynamo</string>
@@ -16,5 +22,9 @@
     <string name="service_timeout">請求超時</string>
     <string name="unexpected_error">未知錯誤</string>
     <string name="network_wrong">網路連線失敗</string>
+
+    <!--Button navigation -->
+    <string name="go_to_red_so_list">Go To RedSoList</string>
+    <string name="search_github_user">Search GitHub User</string>
 
 </resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/item_red_so"
+          android:title="@string/bottom_navigation_title_red_so"
+          android:icon="@android:drawable/ic_menu_directions"
+          android:orderInCategory="1"/>
+
+    <item android:id="@+id/item_github_search_user"
+          android:title="@string/bottom_navigation_title_github_search"
+          android:icon="@android:drawable/ic_menu_myplaces"
+          android:orderInCategory="2"/>
+
+    <item android:id="@+id/item_github_line_tv"
+          android:title="@string/bottom_navigation_title_line_tv"
+          android:icon="@android:drawable/ic_menu_preferences"
+          android:orderInCategory="3"/>
+
+</menu>

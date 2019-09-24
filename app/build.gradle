@@ -3,6 +3,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion 28
@@ -77,4 +78,9 @@ dependencies {
     testImplementation "androidx.paging:paging-common:$paging_version"
     // optional - RxJava support, currently in release candidate
     implementation "androidx.paging:paging-rxjava2:$paging_version"
+
+    // Navigation
+    implementation(["androidx.navigation:navigation-fragment:2.0.0",
+                    "androidx.navigation:navigation-ui:2.0.0"])
+    implementation "com.google.android.material:material:1.0.0"
 }
