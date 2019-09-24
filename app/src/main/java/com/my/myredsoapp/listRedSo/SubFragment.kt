@@ -16,9 +16,11 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.my.myredsoapp.R
+import com.my.myredsoapp.base.BaseFragment
 import com.my.myredsoapp.data.entity.RedSoEntity
 
-class SubFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
+class SubFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
+
     companion object {
         private const val ARG_TITLE = "subFragment_title"
 
@@ -39,50 +41,14 @@ class SubFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     // endregion
 
     private val TAG = javaClass.simpleName
-    private lateinit var mUnBinder : Unbinder
     private lateinit var mViewModel : RedSoViewModel
     private lateinit var mAdapter: RedSoListAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_sub, container, false)
+    override fun getContentViewLayoutID(): Int {
+        return R.layout.fragment_sub
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mUnBinder = ButterKnife.bind(this, view)
-        init()
-    }
-
-    override fun onRefresh() {
-        mViewModel.resetPageCount()
-        fetchList()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        log("onResume")
-    }
-
-    override fun onStart() {
-        super.onStart()
-        log("onStart")
-        mViewModel.resetPageCount()
-        fetchList()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        log("onStop")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        log("onDestroy")
-        mUnBinder.unbind()
-        mViewModel.unregisterLiveData(this)
-    }
-
-    private fun init() {
+    override fun initView() {
         mSwipeRefreshLayout.setOnRefreshListener(this)
 
         val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
@@ -117,23 +83,46 @@ class SubFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         mViewModel = ViewModelProviders.of(this).get(RedSoViewModel::class.java)
         mViewModel.mRedSoList.observe(this, Observer<List<RedSoEntity>> {
                 dataList ->
-                    mSwipeRefreshLayout.isRefreshing = false
-                    if (mViewModel.page == 1) {
-                        mAdapter.setData(dataList)
-                    } else if (mViewModel.page > 1) {
-                        mAdapter.addData(dataList)
-                    }
+            mSwipeRefreshLayout.isRefreshing = false
+            if (mViewModel.page == 1) {
+                mAdapter.setData(dataList)
+            } else if (mViewModel.page > 1) {
+                mAdapter.addData(dataList)
+            }
         })
+    }
 
+    override fun onRefresh() {
+        mViewModel.resetPageCount()
+        fetchList()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        log(TAG, "onResume")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        log(TAG,"onStart")
+        mViewModel.resetPageCount()
+        fetchList()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        log(TAG,"onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        log(TAG,"onDestroy")
+        mViewModel.unregisterLiveData(this)
     }
 
     private fun fetchList() {
         mViewModel.loadDataList(
             context!!,
             arguments?.getString(ARG_TITLE, "")!!)
-    }
-
-    private fun log(msg : String) {
-        Log.d(TAG, msg)
     }
 }

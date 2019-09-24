@@ -1,10 +1,14 @@
 package com.my.myredsoapp.base
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import butterknife.ButterKnife
+import butterknife.Unbinder
 import com.my.myredsoapp.R
 
-open class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     companion object {
         // for overridePendingTransition
@@ -15,12 +19,28 @@ open class BaseActivity : AppCompatActivity() {
         const val TRANSITION_ANIM_FADE = 4
     }
 
+    /**
+     * 獲取佈局id
+     */
+    protected abstract fun getContentViewLayoutID(): Int
+    /**
+     * 初始化控制元件
+     */
+    protected abstract fun initView(savedInstanceState: Bundle?)
+
+    private lateinit var mUnBinder : Unbinder
+
     // TODO fix Warning
     private var mEnterTransAnimType = getEnterTransAnimType()
     private var mLeaveTransAnimType = getLeaveTransAnimType()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (getContentViewLayoutID() != 0) {
+            setContentView(getContentViewLayoutID())
+            mUnBinder = ButterKnife.bind(this)
+            initView(savedInstanceState)
+        }
         overrideEnterTransAnim()
     }
 
@@ -28,6 +48,11 @@ open class BaseActivity : AppCompatActivity() {
         super.onPause()
         if (isFinishing)
             overrideLeaveTransAnim()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mUnBinder.unbind()
     }
 
     protected open fun getEnterTransAnimType() : Int {
@@ -86,5 +111,13 @@ open class BaseActivity : AppCompatActivity() {
             }
         }
         overridePendingTransition(leaveType, exitType)
+    }
+
+    protected fun log (tag : String , msg : String) {
+        Log.d(tag, msg)
+    }
+
+    protected fun toast(desc: String) {
+        Toast.makeText(this, desc, Toast.LENGTH_SHORT).show()
     }
 }

@@ -1,18 +1,12 @@
-package com.my.myredsoapp.listRedSo
+package com.my.myredsoapp.listGitHubUser
 
 import android.os.Bundle
-import androidx.viewpager.widget.ViewPager
-import butterknife.BindView
 import com.my.myredsoapp.R
 import com.my.myredsoapp.base.BaseActivity
 
-class RedSoActivity : BaseActivity() {
-    private val TAG = javaClass.simpleName
+class GitHubSearchActivity : BaseActivity() {
 
-    // region BindViews
-    @BindView(R.id.viewPager)
-    lateinit var mViewPager: ViewPager
-    // endregion
+    private val TAG = javaClass.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,15 +14,11 @@ class RedSoActivity : BaseActivity() {
     }
 
     override fun getContentViewLayoutID(): Int {
-        return R.layout.activity_redso
+        return R.layout.activity_github_search
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        val mPagerAdapter = ViewPagerAdapter(
-            supportFragmentManager, resources.getStringArray(R.array.fragment_titles).asList()
-        )
-        mViewPager.adapter = mPagerAdapter
-        mViewPager.currentItem = 0
+        // TODO init
     }
 
     override fun onStart() {
