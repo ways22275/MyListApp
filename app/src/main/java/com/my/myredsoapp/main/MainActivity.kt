@@ -8,6 +8,7 @@ import butterknife.BindView
 import butterknife.OnClick
 import com.my.myredsoapp.R
 import com.my.myredsoapp.base.BaseActivity
+import com.my.myredsoapp.listBus.BusMainActivity
 import com.my.myredsoapp.listRedSo.RedSoActivity
 
 class MainActivity : BaseActivity() {
@@ -15,7 +16,9 @@ class MainActivity : BaseActivity() {
 
     // region BindViews
     @BindView(R.id.button_to_red_so)
-    lateinit var mButtonTest : AppCompatButton
+    lateinit var mButtonRedSo : AppCompatButton
+    @BindView(R.id.button_to_bus_list)
+    lateinit var mButtonBus : AppCompatButton
     // endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +31,11 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        mButtonTest.setOnClickListener{
+        mButtonRedSo.setOnClickListener{
             goToRedSoList()
+        }
+        mButtonBus.setOnClickListener{
+            goToBusList()
         }
     }
 
@@ -64,6 +70,12 @@ class MainActivity : BaseActivity() {
     private fun goToRedSoList() {
         val intent = Intent()
         intent.setClass(this, RedSoActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToBusList() {
+        val intent = Intent()
+        intent.setClass(this, BusMainActivity::class.java)
         startActivity(intent)
     }
 }

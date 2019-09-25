@@ -25,6 +25,7 @@
 
     <!--Button navigation -->
     <string name="go_to_red_so_list">Go To RedSoList</string>
+    <string name="go_to_bus_list">Go To BusList</string>
     <string name="search_github_user">Search GitHub User</string>
 
 </resources>

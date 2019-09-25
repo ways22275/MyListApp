@@ -32,6 +32,10 @@
                 android:name=".listGitHubUser.GitHubSearchActivity"
                 android:screenOrientation="portrait">
         </activity>
+        <activity
+                android:name=".listBus.BusMainActivity"
+                android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
